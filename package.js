@@ -1,6 +1,6 @@
 Package.describe({
   name: 'arutune:bz-engine-ui',
-  version: '0.0.1',
+  version: '0.1.0',
   // Brief, one-line summary of the package.
   summary: 'Encapsulates user live presence, proximity, distance calculations, messaging',
   // URL to the Git repository containing the source code for this package.
