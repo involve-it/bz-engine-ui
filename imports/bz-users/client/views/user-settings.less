@@ -1,0 +1,398 @@
+
+//@import "{}/client/style/constants.less";
+@import "../../../client/style/constants.less";
+
+
+.page-settings {
+  
+  @edit-image-holder-height: 40px;
+  @border-color:           rgba(147,147,147,.5);
+
+  @text-color-label:       rgba(89,99,107, .95);
+  @text-color-label-span:  #88858c;
+  @innerPadding:           0 15px;
+  @textColor:              rgba(255,255,255,.7);
+  @color:                  rgba(255,255,255,.9);
+  
+  
+
+  //Button Edit
+  a#editProfile {
+    height: 30px;
+    line-height: 30px;
+    top: 6px;
+    right: 15px;
+    position: absolute;
+    background-color: rgba(150,150,150,.1);
+    padding: 0 10px;
+    .border-radius(2px);
+    z-index: 2;
+  }
+
+  .profile-box {
+    /*background-color: rgba(180,180,180, .2);*/
+
+    .title {
+      padding: 0 15px 25px;
+      font-size: 18px;
+      color: lighten(@text-color-label, 10%);
+    }
+    
+    .user-avatar {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .edit-image-holder {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 4px 4px 0 0;
+      
+      a {
+        display: block;
+        font-size: 18px;
+        color: rgba(255,255,255, .2);
+        .border-radius(2px);
+        background-color: rgba(50,50,50, .4);
+        height:       @edit-image-holder-height;
+        line-height:  @edit-image-holder-height;
+        width:        @edit-image-holder-height;
+        -webkit-transition: all .25s; 
+        transition: all .25s;
+        
+        &:hover {
+          color: rgba(255,255,255, .95);
+          background-color: rgba(50,50,50, .75);
+        }
+      }
+    }
+    
+    
+    /*.user-avatar,*/
+    .user-info,
+    .user-attainment,
+    .btn-edit-account,
+    .user-item {
+      margin-bottom: 30px;
+    }
+    
+    .user-item {
+      
+      .bz-user-status-width {
+        /*max-width: 213px;
+        margin: 0 auto;*/
+      }
+
+      .item-details {
+        .display-flex-box();
+        overflow: hidden;
+        margin-bottom: 15px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        .bz-input-label {
+          .align-self(center);
+          color: @text-color-label;
+          font-size: 14px;
+          padding: 0 15px 0 0;
+        }
+
+        .bz-input-result {
+          .align-self(center);
+          background-color: rgba(63, 68, 82, .1);
+          color: @text-color-label-span;
+          .border-radius(2px);
+          width: 100%;
+          
+          p {
+            font-size: 14px;
+            padding: 11px 0;
+            margin: 0;
+          }
+          
+          /* Elements select, input */
+          select,
+          input {
+            border-color: transparent;
+            border-width: 0;
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+          }
+        }
+      }
+      
+    }
+    
+    
+    /*************/
+    
+    
+    .side-a {
+      border-right: 1px solid @border-color-sep;
+      
+      .bz-status-wrapper {
+        display: inline-block;
+        .bz-avatar-user-status {
+          bottom: -3px;
+          right: -3px;
+          width: 24px;
+          height: 24px;
+          .bz-avatar-user-status-wrapper {
+            height: 17px;
+            width: 17px;
+            i {
+              line-height: 17px;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      
+      .user-avatar {
+        /*width: auto;*/
+        width: 160px;
+        height: 160px;
+
+        .bz-avatar {
+          width: auto;
+          height: 100%;
+        }
+      }
+      
+      .user-info {
+        margin-top: 15px;
+        
+        .user-name {
+          color: @text-color-label;
+          font-size: 24px;
+        }
+        
+        .user-location {
+          margin-top: 5px;
+          color: @text-color-label-span;
+        }
+      }
+      
+      .user-attainment {
+        .display-flex-box();
+        .align-items(center);
+        .justify-content(space-between);
+        
+        
+        > div {
+          border-right: 1px solid @border-color-sep;
+          padding: 5px 0;
+          .align-self(center);
+          .flex(1,1);
+          color: @text-color-label;
+          font-size: 16px;
+          font-weight: 700;
+          
+          span {
+            display: block;
+            color: lighten(@text-color-label, 15%);
+            font-size: 12px;
+            font-weight: 100;
+            padding: 0 5px;
+          }
+          
+          &:last-child {
+            border-right: none;
+          }
+        }
+      }
+    }
+
+    .side-b {
+      
+    }
+
+    /*************/    
+    
+    
+    
+    
+    /*old code below*/
+    
+    .card {
+      color: @color;
+      width: 100%;
+      position: relative;
+      
+        .title {
+          padding: @innerPadding;
+          font-size: 16px;
+        }
+
+      
+      box-shadow: none;
+      border-radius: 0;
+      background-color: transparent;
+      overflow: hidden;
+
+
+      .profile-narrow {
+        position: relative;
+        padding: 0;
+
+        
+        .profile-details {
+          /*code*/
+          div {
+            background-color: rgba(0,0,0,.2);
+            padding:0;
+            padding-left: 120px;
+            height: 35px;
+            line-height: 35px;
+            
+            &:first-child {
+              background-color: transparent;
+            }
+          }
+          
+          input {
+            background-color: transparent;
+            border: none;
+            color: @color;
+          }
+        }
+
+        .owner-photo-wrap {
+          /*position: absolute;
+          left: 15px;
+          top: 5px;*/
+
+          .img-avatar {
+            cursor: pointer;
+            position: relative;
+            padding: 0;
+            
+            i {
+              color: #FFFFFF;
+              position: absolute;
+              top: 5px;
+              left: 5px;
+              font-size: 20px;
+              padding: 0 4px;
+              border-radius: 2px;
+              background-color: rgba(0,0,0,.2);
+            }
+          }
+
+          .owner-photo_bubble-wrap div {
+            font-size: 12px;
+            color: #666666;
+            margin: 10px 0;
+          }
+
+          .img-avatar img {
+            padding: 1px;
+            border-radius: 2px;
+          }
+
+          .user-name-label {
+            font-size: 16px;
+            font-weight: 300;
+            padding: 0;
+            text-align: left;
+          }
+
+          .email-label {}
+
+          .phone-label {}
+
+        }
+        
+        .edit-settings {
+          margin: 20px 0;
+        }
+      }
+
+      .edit-settings, .item-details {
+        div {
+          padding: @innerPadding;
+          background-color: rgba(0,0,0,.2);
+  
+          .item {
+            padding: 11px 0;
+            background-color: transparent;
+  
+            p, i {
+              color: @textColor;
+            }
+          }
+        }
+      }
+      
+      .profile-wide {
+        /*code*/
+        text-align: left;
+
+        .buttons-info {
+          padding: 0;
+          
+
+          .item-details {
+
+            .title {
+              color: rgba(255,255,255,.9);
+              padding: @innerPadding;
+              font-size: 16px;
+              margin-bottom: 5px;
+            }
+            
+            margin: 20px 0 ;
+            text-align: left;
+            color: #666666;
+          }
+        }
+
+        span {
+          color: @text-color-label-span;
+        }
+
+        p {
+          font-weight: normal;
+          margin: 0;
+          /*font-size: 14px;*/
+          color: @text-color-label;
+          /*border-bottom: 1px solid @border-color-sep;*/
+        }
+
+        /*.name-label {
+          font-size: 16px;
+          font-weight: bold;
+        }*/
+
+
+      }
+    }
+  }
+
+
+
+}
+
+/* lightbox style */
+
+#imagelightbox-overlay {
+  background-color: rgba(0, 0, 0, .85);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9998;
+}
+
+#imagelightbox
+{
+  position: fixed;
+  z-index: 9999;
+  -ms-touch-action: none;
+  touch-action: none;
+}

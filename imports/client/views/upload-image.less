@@ -1,0 +1,211 @@
+@import "../style/constants.less";
+
+/*Category list*/
+.control--upload-image {
+  //padding: 0 16px;
+  padding: 0;
+  text-align: center;
+  line-height: 31px;
+
+  li {
+    border-radius: 2px;
+    list-style: none;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, .15);
+    color: rgba(255, 255, 255, .75);
+    border: none;
+    padding: 0 5px;
+    margin-right: 10px;
+
+    &.active {
+      background-color: rgba(0, 0, 0, .35);
+      color: rgba(255, 255, 255, .95);
+      -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    }
+  }
+}
+
+/* 0 - 640px */
+@media only screen and (max-width: 40em) {
+  .js-avatar-upload-modal {
+    top: 0 !important;
+    padding: 0;
+    border: 1px solid transparent !important;
+
+    .close-reveal-modal {
+      position: fixed !important;
+      top: 0 !important;
+      z-index: 1010;
+    }
+
+    .bz-modal-dialog-wrapper {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+
+      .bz-modal-dialog-header {
+        background-color: rgba(255, 255, 255, .95);
+        border-bottom: 1px solid rgba(0, 0, 0, .05);
+        z-index: 1000;
+        position: fixed;
+        width: 100%;
+        height: 120px;
+        top: 0;
+        left: 0;
+
+        .title {
+          padding: 15px 16px;
+          margin-bottom: 0;
+          text-transform: uppercase;
+          font-size: 16px;
+          color: rgba(89, 99, 107, 0.95);
+          font-weight: 400;
+          width: 88%;
+          display: block;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .bz-toolbar {
+          margin: 0 16px;
+          .bz-upload-image-toolbar-wrapper {
+            margin: 0;
+          }
+        }
+      }
+
+      .bz-modal-dialog-content {
+        color: rgba(89, 99, 107, 1);
+        padding: 20px;
+        height: ~'calc(100% - 173px)';
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 120px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .bz-modal-dialog-footer {
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        padding: 8px;
+        margin-top: 24px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        background-color: rgba(255, 255, 255, .95);
+      }
+    }
+
+    .title {
+      text-align: left;
+    }
+  }
+}
+
+.bz-upload-image-toolbar {
+  margin: 0 0 16px 0;
+
+  .bz-upload-image-toolbar-wrapper {
+    margin: 0;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    .bz-nav {
+      -ms-flex-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      width: 100%;
+
+      > li {
+        > a {
+          background-color: transparent;
+          padding: 6px 14px;
+
+          i {
+
+          }
+
+          span {
+            padding-top: 8px;
+            font-size: 14px;
+            line-height: 1.2;
+          }
+        }
+      }
+    }
+    .bz-horizontal {
+      > * {
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        .border-radius(0);
+      }
+    }
+  }
+}
+
+.bz-upload-photo-wrapper {
+
+  .bz-upload-photo-wrapper-image,
+  .bz-button-box {
+    .display-flex-box();
+    .justify-content(center);
+  }
+
+  .bz-upload-photo-wrapper-image {
+    margin-bottom: 30px;
+
+    i {
+      font-size: 65px;
+      color: @sub-title-color;
+    }
+  }
+
+  .bz-button-box {
+  }
+
+  .bz-upload-photo-wrapper-check {
+    .display-flex-box();
+
+    .bz-input-flex {
+      .flex(1, 1);
+      input {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.no-upload-image {
+
+  .no-upload-image-wrapper {
+    margin-bottom: 30px;
+
+    .no-img {
+      text-align: center;
+
+      i {
+        font-size: 65px;
+        color: @sub-title-color;
+      }
+    }
+  }
+
+  .bz-files-button {
+
+    input {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

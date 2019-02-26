@@ -1,0 +1,333 @@
+<!--***************************************************** NEW  *****************************************************-->
+<template name="scriptTemplate"></template>
+
+<template name="mainLayout">
+
+    {{> scriptTemplate}}
+
+    <div id="bz-body-wrapper" class="mm-page mm-slideout">
+        <div id="bz-header">
+            <div class="bz-header-wrapper">
+                <!--**-->
+                <!--{{> bzNavBar}}-->
+                <!--**-->
+            </div>
+        </div>
+
+        <div id="bz-content">
+
+            <div class="bz-block-light">
+                <div class="bz-container-body">
+                    {{> yield}}
+                </div>
+            </div>
+
+        </div>
+
+        <!--MENU PANEL-->
+        <nav id="bz-menu">
+            <!--{{> bzMenuLeftWrapper }}-->
+        </nav>
+
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+    </div>
+
+    <div class="js-message-popup-placeholder">
+        {{> bzChatMessagePopup }}
+    </div>
+
+    <!--<div class="message-loader">{{> sAlert template='sAlertCustom'}}</div>-->
+
+    <!-- open the off-canvas menu -->
+    <!--<a id="bz-open-toggle-menu" class="bz-open-off-canvas mm-slideout"><span></span></a>-->
+</template>
+
+<!--** NEW TMPL non-auth pages **-->
+<template name="basicLayout">
+
+    <div id="bz-body-wrapper" class="mm-page mm-slideout">
+
+        <div id="bz-content">
+            {{> yield}}
+        </div>
+
+        <!--MENU PANEL-->
+        {{> bzMenuLeftNew}}
+
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+    </div>
+
+    <!-- open the off-canvas menu -->
+    <a id="bz-open-toggle-menu" class="bz-open-off-canvas mm-slideout"><span></span></a>
+
+</template>
+<!--** END non-auth pages **-->
+
+<template name="bzNavBar">
+
+    <a id="bz-open-toggle-menu" class="bz-open-off-canvas"><span></span></a>
+
+    <nav class="bz-navbar">
+        <div class="bz-logo">
+            {{> bzMeteorLogo }}
+        </div>
+
+        <div class="bz-location-name show-for-medium-up">
+            {{> bzLinkLocationName}}
+        </div>
+
+        <div class="bz-header-menu">
+            {{> bzInnerMenuLeft}}
+        </div>
+
+        <div class="bz-group-menu-btn">
+            <div class="bz-header-button">
+                <div class="show-for-small-only margin-small-right left">{{> bzLinkLocationName}}</div>
+                <div class="left">{{ bzRenderTemplateI18n "createNewButton" }}</div>
+            </div>
+
+            {{> bzNavMe}}
+
+            {{> bzDropSelectLanguage}}
+
+        </div>
+    </nav>
+    <!-- navEND -->
+
+    {{> bzLocationName}}
+</template>
+
+<!--layout for non-auth pages-->
+<template name="basicLayout00">
+
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+
+            <!-- Off Canvas Menu -->
+            {{> bzMenuLeft}}
+
+            <div class="bz-wrap-page bz-overflow-y-auto">
+                <div class="js-button-left-off-canvas">
+                    <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+
+                        <div class="bz-icon-menu"></div>
+                    </a>
+                </div>
+
+                <div class="bz-main">
+                    {{> yield}}
+                </div>
+            </div>
+
+            <!-- close the off-canvas menu -->
+            <a class="exit-off-canvas"></a>
+
+        </div>
+    </div>
+</template>
+
+<template name="bzNavBar00">
+    <div class="bz-nav-bg-default">
+        <div class="bz-nav-bg-wrapper">
+            <nav id="bz-navbar" class="">
+                <div class="bz-logo">
+                    {{> bzMeteorLogo }}
+                </div>
+
+                <div class="bz-location-name show-for-medium-up">
+                    {{> bzLinkLocationName}}
+                </div>
+
+                <div class="bz-header-menu">
+                    {{> bzInnerMenuLeft}}
+                </div>
+
+                <div class="bz-group-menu-btn">
+                    <div class="bz-header-button">
+                        <div class="show-for-small-only margin-small-right left">{{> bzLinkLocationName}}</div>
+                        <div class="left">{{ bzRenderTemplateI18n "createNewButton" }}</div>
+                    </div>
+
+                    {{> bzNavMe}}
+
+                    {{> bzDropSelectLanguage}}
+
+                </div>
+            </nav>
+            <!-- navEND -->
+        </div>
+    </div>
+
+    {{> bzLocationName}}
+
+</template>
+
+<template name="bzFooter">
+    <footer class="bz-footer">
+
+        <div class="bz-site-footer">
+            <div class="bz-utility-footer-nav">
+                <div class="bz-flexible-footer">
+                    <div class="bz-footer-menu">
+                        <ul class="bz-inline-list">
+                            <li><a href="{{pathFor 'home' }}">{{ t9n 'MENU_HOME_PAGE' }}</a></li>
+                            <!--<li><a href="{{pathFor 'bz.aboutUs' }}">Features</a></li>-->
+                            <li><a href="{{pathFor 'bz.aboutUs' }}">{{ t9n 'MENU_ABOUT_US' }}</a></li>
+                            <li><a href="{{pathFor 'contactUs' }}">{{ t9n 'MENU_CONTACTS' }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bz-utility-footer">
+            <div class="bz-utility-footer-nav">
+                <div class="bz-flexible-footer">
+                    <div class="bz-logo-footer">
+                        {{ t9n 'APP_NAME' }}
+                    </div>
+
+                    <div class="bz-socila-buttons">
+                        <ul class="bz-inline-list">
+                            <li><a href="//facebook.com/shinersapp"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="//vk.com/shinersnews"><i class="fa fa-vk"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <!--<div class="bz-language-picker-wrapper">
+                        {{> bzChangeLanguage}}
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</template>
+
+<template name="bzChangeLanguage">
+    <div class="bz-language-picker">
+        <form id="dropdown-choose-lang">
+            <select class="dropdown-choose-lang js-language-picker">
+                <option value="en">English</option>
+                <option value="ru" selected>Русский</option>
+            </select>
+        </form>
+    </div>
+</template>
+
+<template name="bzDropSelectLanguage">
+
+    <div class="bz-select-language">
+        <ul class="bz-switcher-language-list">
+            <li><a class="en" data-lang="en" href="#">EN</a></li>
+            <li><a class="ru" data-lang="ru" href="#">RU</a></li>
+        </ul>
+    </div>
+
+    <!--OLD V.-->
+    <!--<div class="bz-select-language">
+        <button data-dropdown="dropdown-select-language" class="drop-language dropdown" aria-expanded="false" aria-controls="dropdown-select-language">
+            <div class="lang-icon en"><span>eng</span></div>
+            <div class="lang-icon ru"><span>rus</span></div>
+        </button>
+        <div class="menu">
+            <ul id="dropdown-select-language" data-dropdown-content class="f-dropdown drop-language-inner" aria-hidden="true">
+                <li><a data-lang="en" href="#"><span><img src="/img/content/us.svg" alt="English"/></span> English</a></li>
+                <li><a data-lang="ru" href="#"><span><img src="/img/content/ru.svg" alt="Russian"/></span> Русский</a></li>
+            </ul>
+        </div>
+    </div>-->
+</template>
+
+<template name="createNewButton">
+
+    <a href="/posts/new" class="button bz-small alert">
+        <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span
+                class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST' }}</span></div>
+    </a>
+
+</template>
+
+<template name="createNewButtonRu">
+
+    <a href="/posts/new" class="button bz-small alert">
+        <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span
+                class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST' }}</span></div>
+    </a>
+
+
+</template>
+
+<template name="bzHashTags">
+    <a class="button bz-small bz-btn-secondary" href="#"><i class="fa fa-hashtag"></i></a>
+</template>
+
+<template name="bzNavMe">
+    {{#if currentUser}}
+        <div class="bz-nav-me hide-for-small-only hide-for-medium-only">
+            <ul class="bz-nav-me-wrapper">
+                <li>
+                    <a class="bz-nav-me-item-link" href="#" data-dropdown="bzNavMe" data-options="align:bottom;">
+                        <div class="bz-avatar bz-nav-me-avatar"
+                             style="background-image: url({{ getUserThumb }}); height: 36px; width: 36px;"></div>
+                        <i class="fa fa-angle-down bz-nav-me-i"></i>
+                    </a>
+                    <ul id="bzNavMe" class="bz-nav-me-submenu f-dropdown" data-dropdown-content>
+                        <div class="nav-item dropdown-header">{{ t9n 'MENU_SIGNED_IN_AS' }}
+                            <strong>{{getUser.username}}</strong></div>
+                        <div class="dropdown-divider"></div>
+                        <li class="nav-item {{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}"><i
+                                class="fa fa-user"></i> {{ t9n 'MENU_MY_PROFILE' }}</a></li>
+                        <li class="nav-item"><a class="js-sgin-out" href="/sign-out"><i
+                                class="fa fa-sign-out"></i> {{ t9n 'MENU_SIGN_OUT' }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    {{else}}
+        <div class="bz-nav-me hide-for-small-only hide-for-medium-only">
+            <div class="bz-nav-sign-in">
+                <a class="bz-nav-sign-in-link js-bz-btn-signin" href="/sign-in"><i class="fa fa-lock"></i> {{ t9n
+                        'MENU_SIGN_IN' }}</a>
+            </div>
+        </div>
+    {{/if}}
+</template>
+
+<template name="bzVersion">
+    <div class="bz-version-wrapper">
+        {{#if gitRev 'tag'}}
+            <div class="bz-version-tag"> {{gitRev 'tag'}} </div>
+        {{/if}}
+
+        {{#if gitRev 'timestamp'}}
+            <div class="bz-version-timestamp"> {{gitRev 'timestamp'}} </div>
+        {{/if}}
+    </div>
+</template>
+
+
+<template name="bzMenuLeftNew">
+    <nav id="bz-menu">
+        {{> bzMenuLeftWrapper }}
+    </nav>
+</template>
+
+<template name="bzMenuLeftWrapper">
+    <aside class="bz-menu-wrapper">
+        {{> bzInnerMenuLeft}}
+    </aside>
+</template>
+
+<template name="bzMeteorLogo">
+    <div class="bz-logo-wrapper" style="    font-size: 20px;">
+        <a href="/home" style="color: white;">
+            <img class="bz-log-logotype show-for-medium-up" src="{{#if pageOptions}}{{pageOptions.logoType}}{{else}}/img/logo/logo-home-logotype.png{{/if}}" alt="logotype">
+            {{ getLocalAppName }}
+        </a>
+    </div>
+</template>

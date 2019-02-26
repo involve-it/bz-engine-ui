@@ -1,0 +1,218 @@
+@import "../client/style/constants.less";
+
+.bz-main {
+  height: 100%;
+}
+
+/* buzzar general background */
+.tmpl-background {
+  background-image: -webkit-linear-gradient(-35deg, @bg-header-color-1, @bg-header-color-2);
+  background-image: linear-gradient(135deg, @bg-header-color-1, @bg-header-color-2);
+  background-color: @bg-header-color-1;
+  min-height: 100vh;
+}
+
+.action-sheet .button {
+  color: #8097ff;
+}
+
+.labelText {
+  span {
+    //padding-left: 6px;
+  }
+  > * {
+  }
+}
+
+.bz-language-picker-wrapper {
+  width: 160px;
+  margin: 6px 0;
+
+  .dropdown-choose-lang {
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+.bz-language-picker {
+  /*width: 200px;
+  margin: 0 auto;*/
+  text-align: right;
+  margin: 0 auto;
+  /*float: right;
+  margin: auto 35px;*/
+
+  .dropdown-choose-lang {
+    background-color: rgba(64, 72, 93, 1);
+    border: 0;
+  }
+}
+
+.bz-select-language {
+  opacity: .9;
+  transition: opacity .15s ease-in-out;
+  -moz-transition: opacity .15s ease-in-out;
+  -webkit-transition: opacity .15s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .bz-switcher-language-list {
+    padding: 0;
+    margin: 0;
+
+    > * {
+      list-style: none;
+      float: left;
+
+      a {
+        cursor: pointer;
+        display: block;
+        padding: 7px 6px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 1);
+        text-decoration: underline;
+
+        &.active {
+          cursor: default;
+          color: rgba(255, 255, 255, .5);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  /*old v.*/
+  .drop-language {
+    white-space: nowrap;
+    background-color: rgba(64, 72, 93, .7);
+    padding: 8px 30px 8px 8px;
+    margin: 0;
+    .border-radius(2px);
+
+    &:after {
+      right: 10px;
+    }
+
+    .lang-icon {
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 20px;
+      width: 26px;
+
+      span {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, .95);
+      }
+    }
+
+    .en {
+      /*background-image: url('/img/content/us.svg');*/
+    }
+
+    .ru {
+      /*background-image: url('/img/content/ru.svg');*/
+    }
+  }
+
+  .drop-language-inner {
+    .border-radius(2px);
+    padding: 5px;
+    text-align: left;
+
+    li {
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .1);
+        .border-radius(2px);
+      }
+
+      span {
+        margin-right: 10px;
+
+        img {
+          width: 26px;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+//TODO Delete ionic style
+/*old ionic style*/
+.body-texture {
+  background-attachment: fixed;
+  background-color: #a778ca;
+  background-image: -webkit-linear-gradient(top, #a778ca, #71a3d3 100%);
+  background-image: -moz-linear-gradient(top, #a778ca, #71a3d3 100%);
+  background-image: -o-linear-gradient(top, #a778ca, #71a3d3 100%);
+  background-image: linear-gradient(to bottom, #a778ca, #71a3d3 100%);
+  background-repeat: no-repeat;
+}
+
+/* bar style */
+
+.bar.bar-fantasia {
+  border-color: transparent;
+  background-color: @background-bar-fantasia;
+  /*background-image: linear-gradient(0deg, #8097ff, #8f83ff 50%, transparent 50%);*/
+  color: #fff;
+}
+
+.bar.bar-fantasia .title {
+  color: #fff;
+}
+
+.bar.bar-fantasia.bar-footer {
+  background-image: linear-gradient(180deg, #8097ff, #8f83ff 50%, transparent 50%);
+}
+
+.bar-fantasia .button {
+  border-color: #8097ff;
+  background-color: #8097ff;
+  color: #fff;
+}
+
+.bar-fantasia .button:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.bar-fantasia .button.active,
+.bar-fantasia .button.activated {
+  border-color: #8097ff;
+  background-color: #8f83ff;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.bar-fantasia .button.button-clear {
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+  color: #fff;
+  font-size: 17px;
+}
+
+.bar-fantasia .button.button-icon {
+  border-color: transparent;
+  background: none;
+}
+
+/* bar style fantasia*/
+.bar.bar-fantasia-dark {
+  border-bottom: 1px solid transparent;
+  /*border-color: rgba(150,150,150,.25);*/
+}
+
+.bar-fantasia-dark {
+  background-color: #303149;
+
+  .title {
+    color: rgba(255, 255, 255, .9);
+  }
+}
+
+/*end old ionic style*/

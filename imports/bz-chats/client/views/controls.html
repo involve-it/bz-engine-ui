@@ -1,0 +1,62 @@
+
+<template name="sAlertCustom">
+    {{#if user}}
+    <div class="custom-alert-class bz-with-user s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-scale s-alert-show" id="{{_id}}" style="{{boxPosition}}">
+        <div class="s-alert-box-inner">
+                <div class="bz-alert-message">
+                    <div class="bz-alert-message-wrapper">
+                        <div class="bz-user-avatar">
+                            {{#if user.profile.image.data}}
+                            <div class="bz-avatar" style="background-image: url({{ user.profile.image.data }})"></div>
+                            {{else}}
+                            <div class="bz-avatar" style="background-image: url('/img/content/avatars/avatar-no.png')"></div>
+                            {{/if}}
+                        </div>
+                        <div class="bz-alert-message-content">
+                            <div class="bz-alert-message-username"> {{user.username}} </div>
+                            <a href="/chat/{{chatId}}" class="js-go-to-msg-link" data-id="{{ _id }}">
+                                <div class="bz-alert-message-text">
+                                    <span> {{messageText}} </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <span class="s-alert-close"></span>
+    </div>
+    {{else}}
+
+        <div class="custom-alert-class s-alert-box ui-alert s-alert-{{condition}} s-alert-{{position}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
+            <div class="s-alert-box-inner">
+                <div class="bz-alert-message">
+                    {{#if isHtml}}
+                        <ul class="bz-alert-list">{{{message}}}</ul> 
+                    {{else}}
+                        <span>{{message}}</span>
+                    {{/if}}
+                </div>
+            </div>
+            <span class="s-alert-close"></span>
+        </div>
+        
+    {{/if}}
+</template>
+
+
+<!--TODO delete old show popup message-->
+
+<template name="bzChatMessagePopup">
+    <div id="bzChatMessageModal" class="reveal-modal js-chat-message-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+        <h4>New incoming message.</h4>
+
+        <p><a href="/chat/{{chatId}}" class="js-go-to-msg-link" data-id="{{ _id }}">{{ messageText }}</a></p>
+        {{#if user }}
+            <p>From:</p>
+            {{> bzUserProfileBasic this.user}}
+            <!--{{> bzUserProfileBasic user}}-->
+        {{/if}}
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+</template>
+

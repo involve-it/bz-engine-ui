@@ -1,0 +1,43 @@
+<template name="aroundYouSmall">
+    {{#if getAroundItems.length}}
+        <section id="bz-around-you-small">
+            <div class="bz-around-you-small">
+                <div class="swiper-container swiper-container-horizontal">
+                    <div class="swiper-wrapper bz-around-you-small-slider">
+                        {{#each getAroundItems}}
+                            <div class="swiper-slide">{{> bzAroundYouSmallItem}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/if}}
+</template>
+
+<template name="bzAroundYouSmallItem">
+    <div class="bz-item-wrapper">
+        <div class="bz-item">
+            <div class="bz-side-b">
+                <div class="bz-slideset-content bz-overlay-hover">
+                    <a class="bz-slideset-content-wrapper" href="/post/{{_id}}">
+                        {{#if getImgSrc}}
+                            <div class="bz-background-image-cover border-color-yellow"
+                                 style="background-image: url('{{ getImgSrc }}')"></div>
+                        {{else}}
+                            <div class="bz-background-image-cover border-color-yellow"
+                                 style="background-image: url('/img/content/no-photo.png')"></div>
+                        {{/if}}
+                        <div class="bz-post-info">
+                            <div class="bz-flex">
+                                {{> bzPostsPostPresence this}}
+                                {{> bzPostsPostDistance this}}
+                            </div>
+                        </div>
+                        <div class="bz-post-title"><h4 class="bz-title">{{details.title}}</h4></div>
+                    </a>
+                    {{> postProgressBar}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

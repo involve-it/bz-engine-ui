@@ -1,0 +1,36 @@
+// We use these to control button border styles.
+$transparent-button-bg-color: transparent !default;
+$bg-facebook-color1: rgba(82, 113, 174, 1);
+$bg-facebook-color2: rgba(51, 76, 128, 1);
+
+button, .button {
+
+  &.transparent {
+    background-color: $transparent-button-bg-color;
+    opacity: .85;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.btn-border {
+    border-style: solid;
+    border-width: 1px;
+  }
+
+  &.btn-border-white {
+    border-color: rgba(255, 255, 255, 1);
+  }
+  /* facebook */
+  &.js-login-with-fb-btn {
+    border-top: 1px solid rgba(255, 255, 255, .25);
+    background-image: -webkit-linear-gradient(-90deg, $bg-facebook-color1, $bg-facebook-color2);
+    background-image: linear-gradient(180deg, $bg-facebook-color1, $bg-facebook-color2);
+    background-color: $bg-facebook-color1;
+
+    font-weight: 700;
+
+    i {
+    }
+  }
+}

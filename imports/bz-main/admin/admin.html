@@ -1,0 +1,32 @@
+<template name="admin">
+    <h5>Users, registered in the last 4 weeks: </h5>
+    <table class="admin-users-table">
+        {{#each getUsers }}
+            <tr>
+                {{> userItem }}
+            </tr>
+        {{/each}}
+    </table>
+
+</template>
+
+<template name="userItem">
+    <td>
+        profile url: <a href="/user/{{ _id }}">{{ _id }}</a>
+    </td>
+    <td>
+        email: <span>{{ getEmail }}</span>
+    </td>
+    <td>
+        username: {{ username }}
+    </td>
+    <td>
+        profile JSON: {{ getProfile }}
+    </td>
+    <td>
+        registered at: {{ getCreatedDate }}
+    </td>
+    <td>
+        Last login at: {{ getLastLoginDate }}
+    </td>
+</template>

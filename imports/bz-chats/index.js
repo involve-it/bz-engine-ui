@@ -1,0 +1,12 @@
+import './client/controller.client.js';
+import './client/router.client.js';
+import './client/views/chat-id.html';
+import './client/views/chat-id.js';
+import './client/views/chat-id.less';
+import './client/views/chats-all.html';
+import './client/views/chats-all.js';
+import './client/views/controls.html';
+import './client/views/controls.js';
+import './client/views/page-chats.html';
+import './client/views/page-chats.js';
+import './client/views/page-chats.less';

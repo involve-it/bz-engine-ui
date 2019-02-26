@@ -1,0 +1,19 @@
+<template name="bzNewPosts">
+    <!--bz-container-body-->
+    <section id="bz-around-you" class="">
+        <div class="bz-around-you">
+            <div class="bz-items">
+                <div class="bz-isotope-grid">
+                    <h2 class="title">{{ t9n 'NEW_POSTS_TITLE' }}</h2>
+                    {{#each getData}}
+                        {{> bzAroundYouItem}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="show-more-button text-center bz-padding-top-x1">
+            <a class="button btn-default js-show-more-posts-btn" href="#">{{ t9n 'BUTTON_SHOW_MORE_POSTS' }}</a>
+        </div>
+    </section>
+</template>
+

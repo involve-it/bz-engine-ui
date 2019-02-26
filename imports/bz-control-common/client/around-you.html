@@ -1,0 +1,184 @@
+<template name="bzAroundYou">
+    {{#if getAroundItems}}{{/if}}
+    {{#if getData}}
+        <!--bz-container-body-->
+        <section id="bz-around-you" class="">
+            <div class="bz-around-you">
+                <div class="bz-items">
+                    <div class="bz-isotope-grid">
+                        <!--<h2 class="title">{{ t9n 'AROUND_YOU_TITLE' }}</h2>-->
+                        {{#each getData}}
+                            {{> bzAroundYouItem}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="show-more-button text-center bz-padding-top-x1">
+                <a class="button btn-default js-show-more-posts-btn" href="#">{{ t9n 'BUTTON_SHOW_MORE_POSTS' }}</a>
+            </div>
+        </section>
+
+    {{else}}
+        {{> notFoundAroundItems}}
+    {{/if}}
+</template>
+
+<template name="bzAroundYouItem">
+    {{#if true}}
+        <!--PHOTO-->
+        <div class="bz-item-wrapper grid-item" data-distance="{{ _getDistanceToCurrentLocationNumber }}">
+            <div class="bz-item">
+                <div class="bz-side-b">
+                    <div class="bz-photo bz-overlay-hover">
+                        <a href="/post/{{_id}}">
+                            <div class="bz-background-image-cover"
+                                 style="background-image: url('{{ getImgSrc }}')"></div>
+                            <div class="bz-post-info">
+                                <div class="bz-flex">
+                                    {{> bzPostsPostPresence this}}
+                                    {{> bzPostsPostDistance this}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="bz-content">
+                        <a href="/post/{{_id}}">
+                            <h4 class="bz-title">{{details.title}}</h4>
+                        </a>
+                        <p class="post-item-text">
+                            {{{postLimitDescription 65}}}
+                        </p>
+                        <div class="bz-text-align-right">
+                            <!--<a class="bz-read-more" href="/post/{{_id}}">{{ t9n 'READ_MORE'}}</a>-->
+                        </div>
+                        {{> postProgressBar}}
+                    </div>
+                    <div class="bz-item-footer">
+                        <!--{{#if details.price}}
+                <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+            {{/if}}-->
+                        {{> bzAdCategoryButton }}
+                        <div class="bz-sent-text">
+                            <a class="send-message-btn js-send-message-btn {{ disableOwnPost }}">{{ t9n
+                                    'SEND_MESSAGE' }}</a>
+                        </div>
+
+                    </div>
+                    {{#if isAdmin }}
+
+                        <div class="row">
+                            <div class="js-remove-post bz-small button alert">
+                                <i class="fa fa-times"></i> <span>Удалить</span>
+                            </div>
+                            {{#if isVisible }}
+                                <div class="js-deactivate-post bz-small button info">
+                                    <i class="fa fa-pause"></i> <span>Деактивировать</span>
+                                </div>
+                            {{else }}
+                                <div class="js-activate-post bz-small button info">
+                                    <i class="fa fa-play"></i> <span>Активировать</span>
+                                </div>
+                            {{/if}}
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <!--<span class="bz-text-italic">{{ getPostCreatedDate }}</span>-->
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <!--WITHOUT PHOTO-->
+        <div class="bz-item-wrapper grid-item">
+            <div class="bz-item">
+                <div class="bz-side-b">
+                    <div class="bz-photo bz-overlay-hover">
+                        <a href="/post/{{_id}}">
+                            <div class="bz-post-info">
+                                <div class="bz-flex">
+                                    {{> bzPostsPostPresence this}}
+                                    {{> bzPostsPostDistance this}}
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="bz-content">
+                        <a href="/post/{{_id}}">
+                            <h4 class="bz-title">{{details.title}}</h4>
+                        </a>
+                        <p class="post-item-text">
+                            {{{details.description}}}
+                        </p>
+                        <div class="bz-text-align-right">
+                            <!--<a class="bz-read-more" href="/post/{{_id}}">{{ t9n 'READ_MORE'}}</a>-->
+                        </div>
+                        {{> postProgressBar}}
+                    </div>
+                    <div class="bz-item-footer">
+                        {{> bzAdCategoryButton }}
+                        <div class="bz-sent-text">
+                            <a class="send-message-btn js-send-message-btn {{ disableOwnPost }}">{{ t9n
+                                    'SEND_MESSAGE' }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</template>
+
+
+<!--used on the around you, home:-->
+<template name="bzUserProfileAroundYou">
+    <div class="bz-status-wrapper">
+        <a href="/user/{{ _id }}">
+            <div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div>
+        </a>
+        {{> bzAvatarUserStatus}}
+    </div>
+
+    <!--<div class="bz-rating">{{ getPostRating }}</div>-->
+    <div class="bz-username"><a href="/user/{{ _id }}">{{username}}</a></div>
+</template>
+
+
+<template name="notFoundAroundItems">
+    <div class="not-found-items">
+        <div class="bz-flex-box bz-margin">
+            {{#if locationWasDefined}}
+                <!--location was defined thus really no posts, offer to create some:-->
+                <div class="title-message">{{ t9n 'NO_ITEMS_AROUND_YOU'}}</div>
+                <!--<div class="subtitle-message margin-bottom-20px">{{ t9n 'YOU_CAN_CREATE_POST'}}</div>-->
+
+                <a href="/posts/new" class="button alert bz-margin-zero">
+                    <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span
+                            class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST'}}</span></div>
+                </a>
+                <div class="bz-location-name" style="position: static; top: auto; left: auto;">
+                    <br/>
+                    <a class="js-try-to-reset-search" style="color: #5ab1ce;">
+                        <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_RESET_SEARCH'}}</span>
+                    </a>
+                </div>
+            {{else}}
+                <!--location was not defined thus no posts found, offer user to redefined loc:-->
+                <div class="title-message">{{ t9n 'NO_ITEMS_AROUND_LOCATION_NOT_DEFINED'}}</div>
+
+                <div class="bz-location-name" style="position: static; top: auto; left: auto;">
+                    <a class="js-try-to-set-location bz-link-lacation-name" style="color: #5ab1ce;">
+                        <i class="fa fa-map-marker bz-fa-location-not-defined"></i>
+                        <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_SET_LOCATION'}}</span>
+                    </a>
+                    <br/>
+                </div>
+            {{/if}}
+
+
+            <br/>
+            <br/>
+
+        </div>
+    </div>
+</template>

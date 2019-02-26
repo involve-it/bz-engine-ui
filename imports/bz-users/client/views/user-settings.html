@@ -1,0 +1,205 @@
+<template name="userSettings">
+
+  <div class="main-content">
+    <div class="page-settings">
+      <div class="profile-box">
+
+
+        <!--SIDE A-->
+        <div class="side-a text-center small-12 medium-4 columns">
+          <div class="item item-divider">
+            <h3 class="title uppercase">Детали профиля</h3>
+          </div>
+
+           <div class="bz-status-wrapper">
+               <div class="user-avatar">
+                   <div class="bz-avatar" style="background-image: url({{getUser.image.imageUrl}})"></div>
+                   
+                   <!-- OLD CODE -->
+                   <!-- {{> avatarThumbnail image=profile.image}}-->
+                   
+               </div>
+               {{> bzAvatarUserStatus getUser}}
+           </div>
+
+          <div class="user-info">
+            <div class="user-name capitalize">{{getUser.username}} </div>
+            <div class="user-fio">{{getUser.firstName.value}} {{getUser.lastName.value}}</div>
+            <div class="user-location"> {{getUser.city.value}}</div>
+
+          </div>
+
+          <!--<div class="user-attainment">
+            <div class="count-posts">{{getPostsCount}}<span>Посты пользователя</span></div>
+            <div class="count-comments">{{getReviewsCount}}<span>Комментарии</span></div>
+          </div>-->
+
+          <div class="btn-edit-account">
+            <button class="button btn-default js-send-message-btn">Послать сообщение</button>
+          </div>
+
+        </div>
+
+        <!--SIDE B-->
+        <div class="side-b small-12 medium-8 large-8 columns">
+
+          <div class="item-divider">
+            <h3 class="title uppercase">Персональные данные</h3>
+          </div>
+          <div class="user-item overflow">
+           <!--
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">ССылка на профиль</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns">
+                <div class="bz-text-overflow-ellipsis">
+                  <p><a href="{{ getIdProfile}}">{{ getIdProfile}}</a></p>
+                </div>
+              </div>
+            </div>
+            -->
+            {{#if $eq getUser.phone.policy  "1" }}
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">Телефон</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getUser.phone.value}} </p></div>
+              </div>
+            {{/if}}
+
+            {{#if $eq getUser.skype.policy  "1" }}
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">Скайп</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.skype.value}} </p></div>
+              </div>
+            {{/if}}
+
+
+          </div>
+
+          <div class="clearfix"></div>
+
+          {{#if $eq getUser.vk.policy  "1" }}
+            <div class="user-item overflow">
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">ВК</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.vk.value}}</p></div>
+              </div>
+            </div>
+          {{/if}}
+
+          {{#if $eq getUser.facebook.policy  "1" }}
+            <div class="user-item overflow">
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">ФБ</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.facebook.value }} </p></div>
+              </div>
+            </div>
+          {{/if}}
+
+          {{#if $eq getUser.twitter.policy  "1" }}
+            <div class="user-item overflow">
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">ТВиттер</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getUser.twitter.value}}</p></div>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="bz-separate"></div>
+          
+        {{#if getCheckboxUserProfile checked}}
+            {{> bzUserOwnPosts}}
+        {{/if}}
+          
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<!--*********************-->
+
+<template name="bzUserOwnPosts">
+    
+    {{#if getPopularItems.length}}
+        <div class="clearfix"></div>
+        <section class="bzUserOwnPosts">
+            <div class="bz-most-popular">
+                <div class="bz-items">
+                    <div class="row">
+                        <div class="">
+                            {{#each getPopularItems}}
+                                {{> bzUserOwnPostsItem}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/if}}
+</template>
+
+<template name="bzUserOwnPostsItem">
+    <div class="bz-item-wrapper small-12 medium-4 large-3 columns left">
+        <div class="bz-item {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}}">
+            <div class="bz-side-b">
+                <div class="bz-photo bz-overlay-hover">
+                    <a href="/post/{{_id}}">
+                        {{#if getImgSrc}}
+                            <div class="bz-background-image-cover"
+                                 style="background-image: url('{{ getImgSrc }}')"></div>
+                        {{else}}
+                            <div class="bz-background-image-cover"
+                                 style="background-image: url('/img/content/no-photo.png')"></div>
+                        {{/if}}
+                        <div class="bz-post-info">
+                            <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
+                            <div class="bz-flex">
+                                {{> bzPostsPostPresence this}}
+                                {{> bzPostsPostDistance this}}
+                            </div>
+
+                            <!--<a class="bz-position-cover" href="#"></a>-->
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="bz-content">
+                    <a href="/post/{{_id}}">
+                        <h4 class="bz-title">{{details.title}}</h4>
+                    </a>
+                    <p class="post-item-text">
+                        {{{ postLimitDescription 65 }}}
+                    </p>
+                    {{> postProgressBar}}
+                </div>
+                <div class="bz-item-footer">
+                    <!--{{#if details.price}}
+                <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+            {{/if}}-->
+                    {{> bzAdCategoryButton }}
+                    <div class="bz-sent-text">
+                        <a class="js-send-message-btn {{ disableOwnPost }}">Послать сообщение</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<!--
+<template name="postProgressBar1">
+    {{#if getPostProgressBar}}
+        <div class="bz-progress bz-item-progress">
+            <div class="bz-progress-wrapper">
+                &lt;!&ndash;square radius round&ndash;&gt;
+                <div class="progress small-12 square bz-bar-{{getPostProgressBar.barClass}}">
+                    <span class="meter" style="width: {{ getPostProgressBar.percent }}%"></span>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</template>-->

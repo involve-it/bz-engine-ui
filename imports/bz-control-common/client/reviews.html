@@ -1,0 +1,102 @@
+<template name="bzControlReviews">
+    {{#if Template.subscriptionsReady}}
+
+
+
+        {{#if getComments}}
+            <div class="bz-post-review">
+                <!--<h3 class="title-review">{{ getComments.length }} {{ t9n 'COMMENTS' }} (page 1 of 1)</h3>-->
+                <div class="bz-reviews-list">
+
+                    {{#with subCom}}
+                        {{#each this}}
+                            {{> bzControlReviewItem }}
+                        {{/each}}
+                    {{/with}}
+
+                    {{#each getComments}}
+                        {{> bzControlReviewItem }}
+                    {{/each}}
+
+                    <!-- OLD CODE -->
+                    <!--
+                    {{#each getReviews }}
+                        {{> bzControlReviewItem }}
+                    {{/each}}-->
+                </div>
+            </div>
+        {{/if}}
+    {{else}}
+        {{> loader}}
+    {{/if}}
+</template>
+
+
+<template name="bzControlReviewItem">
+    <div class="bz-post-content">
+        <div class="bz-review-avatar">
+            <div class="bz-user-avatar">
+                {{#if user}}
+                    <a href="/user/{{ user._id }}">
+                        <div class="bz-avatar" style="background-image: url({{#if
+                                user.image.imageUrl}} {{ user.image.imageUrl }} {{else}} {{ user.image.data }} {{/if}})"></div>
+                    </a>
+                {{else}}
+                    <div class="bz-avatar" style="background-image: url('/img/content/avatars/avatar-no.png')"></div>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="bz-review-post-body">
+            <div class="bz-review-post-body-header">
+                <div class="bz-review-post-inline">
+                <span class="bz-author bz-publisher-anchor-color">
+                    <a href="/user/{{ user._id }}">{{user.username}}</a>
+                </span>
+                </div>
+
+                <div class="bz-post-meta">
+                    <span class="bz-bullet bz-time-ago-bullet">•</span>{{timestampToTime dateTime}} <!--{{ getTime }}-->
+                </div>
+            </div>
+
+            <div class="bz-review-post-body-inner">
+                <div class="bz-review-post-message">
+                    {{ text }}
+                </div>
+            </div>
+
+            <!--<div class="bz-review-post-body-footer"></div>-->
+
+            {{#if isUserCommentOwner}}
+                <a class="bz-review-post-icon-footer js-delete-comment" href="#"><span><i
+                        class="fa fa-trash-o"></i></span></a>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="bzControlAddReview">
+    <div class="bz-post-review-info">
+        <h3 class="title-review">{{ getCommentsCount }} {{ t9n 'COMMENTS' }} (page 1 of 1)</h3>
+    </div>
+
+    <div class="bz-post-leave-review">
+        <form data-abide="ajax">
+            <textarea id="review-input" required rows="3" cols="50" class="js-post-text-input" placeholder={{ t9n
+                    'REVIEW_HELP_TEXT' }}></textarea>
+            <div class="bz-control-reviews">
+                <!--<select id="single-bsg-pilot" class="js-rating-select" data-prompt={{ t9n 'CHOOSE_RATING' }}> //todo:
+                Post-Processing Selection Post Rating
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>-->
+                <button class="button btn-default bz-small js-post-btn" disabled={{buttonStateDisabled}}>{{ t9n
+                        'SUBMIT' }}</button>
+            </div>
+        </form>
+    </div>
+</template>

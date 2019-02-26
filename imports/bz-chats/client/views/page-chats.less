@@ -1,0 +1,116 @@
+@import "../../../client/style/constants.less";
+
+@bg-toolbar-color-1: rgba(54,60,78, .1);
+@bg-toolbar-color-2: rgba(54,60,78, .1);
+
+.transition() {
+  transition:         all .25s ease;
+  -moz-transition:    all .25s ease;
+  -webkit-transition: all .25s ease;
+}
+
+
+
+.bz-wrapper-messages {
+  
+  
+  .bz-chats-toolbar {
+    .display-flex-box();
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    margin: -16px -16px 16px -16px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid @border-color-sep;
+    padding: 0 16px;
+
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    
+    color: #666666;
+    text-align: center;
+  }
+  
+  .bz-summary-wrapper {
+    margin: 0 -16px 16px -16px;
+    border-bottom: 1px solid @border-color-sep;
+    
+    .bz-summary {
+      padding: 0 16px 3px;
+      font-size: 14px;
+      font-weight: 400;
+      color: @text-color-label;
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+
+  
+  .bz-chat-item {
+    border-bottom: 1px solid @border-color-sep;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    opacity: 1;
+
+    a {
+      display: block;
+      
+      &:hover {
+        .bz-user-avatar,
+        .bz-username {
+          opacity: .75;
+          .transition();
+        }
+      }
+    }
+    
+    .bz-meta {
+      position: relative;
+      min-height: 50px;
+      padding-left: 65px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+   
+    .bz-user-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+
+      .bz-avatar {
+        width: auto;
+        height: 100%;
+      }
+    }
+    
+    .bz-username {
+      font-weight: 700;
+      font-size: 14px;
+      color: @text-link-green;
+      text-transform: capitalize;
+    }
+
+    .bz-last-timestamp {
+      color: @sub-title-color;
+      font-size: 12px;
+    }
+    
+    
+    
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }  
+  
+} 
+

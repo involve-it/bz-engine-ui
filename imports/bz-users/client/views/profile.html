@@ -1,0 +1,294 @@
+<template name="profileSettings">
+
+  <div class="main-content">
+    <div class="page-settings">
+      <div class="profile-box">
+        <form data-abide>
+        
+          <!--SIDE A-->
+          <div class="side-a text-center small-12 medium-4 columns">
+            <div class="item item-divider">
+              <h3 class="title uppercase">Детали профиля</h3>
+            </div>
+
+              <div class="bz-status-wrapper">
+                  <div class="user-avatar">
+                      {{> avatarThumbnail write=true image=profile.image}}
+                  </div>
+                  {{> bzAvatarUserStatus getUser}}
+              </div>
+
+            <div class="user-info">
+              <div class="user-name capitalize">{{getUser.username}}</div>
+              <div class="user-location"> {{getUser.city.value}}</div>
+            </div>
+
+            <!--<div class="user-attainment">
+              <div class="count-posts">{{getPostsCount}}<span><a href="/posts/my">Пост детали профиля</a></span></div>
+              <div class="count-comments">{{getReviewsCount}}<span>Комментарии</span></div>
+            </div>-->
+
+
+            <ul class="stack button-group">
+              <li>
+                <div class="btn-edit-account">
+                  <a class="button btn-default js-edit-btn">Редактировать профиль</a>
+                </div>
+              </li>
+              <li>
+                <div class="btn-edit-account">
+                  <a class="button disabled btn-default js-done-btn">Сохранить профиль</a>
+                </div>
+              </li>
+              <li>
+                <div class="btn-edit-account">
+                  <a class="button disabled btn-default js-cancel-btn">Отмена</a>
+                </div>
+              </li>
+              <li>
+                <div class="btn-edit-account">
+                  <a class="button alert js-logout-btn">Выйти</a>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+
+          <!--SIDE B-->
+          <div class="side-b small-12 medium-8 large-8 columns">
+
+            <div class="item-divider">
+              <h3 class="title uppercase">Личные настройки</h3>
+            </div>
+              
+            <div class="user-item overflow">
+            <div class="edit-fields-user">
+                <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns">Имя</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                  <input class="user-settings bz-profile-first-name disabled" autocomplete="off" type="text" value="{{getUser.firstName.value}}">
+                  <!--Error-->
+                  <div class="bz-hint-errr-message"><small class="error">Неправильное поле</small></div>
+                </div>
+                </div>
+                
+                <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns">Фамилия</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                  <input class="user-settings bz-profile-last-name disabled" autocomplete="off" type="text" value="{{getUser.lastName.value}}">
+                  <!--Error-->
+                  <div class="bz-hint-errr-message"><small class="error">Ошибка</small></div>
+                </div>
+                </div>
+                
+                <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns">Город</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                  <input class="user-settings bz-profile-city disabled" autocomplete="off" type="text" value="{{getUserCity}}">
+                  <!--Error-->
+                  <div class="bz-hint-errr-message"><small class="error">Ошибка</small></div>
+                </div>
+                </div>
+                <div class="bz-separate"></div>
+                <div class="item-details">
+                    <div class="small-12 bz-input-label columns">
+                        <div class="bz-user-profile-link">
+                            <div class="small-12 bz-input-label columns">Ссылка на профиль</div>
+                            <div class="small-12 bz-input-result columns">
+                                <!--<input class="bz-profile-user-link js-bz-profile-user-link-select" autocomplete="off" type="text" readonly="readonly" value="{{getUserProfileLink}}">-->
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="Прямая ссылка на профиль" href="{{getUserProfileLink}}">{{getUserProfileLink}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bz-separate"></div>
+                <div class="item-details">
+                    <div class="small-12 bz-input-label columns">
+                        <div class="bz-user-profile-link">
+                            <div class="small-12 bz-input-label columns">Инвайт Коды</div>
+                            {{#if getAdminsCode }}
+                            <div class="small-12 bz-input-result columns">
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="Прямая ссылка на профиль" href="{{getUserProfileLink}}">
+                                    {{getAdminsCodeLink}}
+                                </a>
+                            </div>
+                            {{/if }}
+                            {{#if getTrainersCode }}
+                            <div class="small-12 bz-input-result columns">
+                                <span>Код для приглашения тренеров:</span>
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="Прямая ссылка на профиль" href="{{getUserProfileLink}}">
+                                    {{getTrainersCodeLink}}
+                                </a>
+                            </div>
+                            {{/if }}
+
+                            {{#if getUsersCode }}
+                            <div class="small-12 bz-input-result columns">
+                                <span>Код для приглашения пользователей:</span>
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="Прямая ссылка на профиль" href="{{getUserProfileLink}}">
+                                    {{getUsersCodeLink}}
+                                </a>
+                            </div>
+                            {{/if }}
+                        </div>
+                    </div>
+                </div>
+                <div class="bz-separate"></div>
+
+                <div class="item-details">        
+                    <div class="small-12 bz-input-label columns">
+                        <div class="bz-user-profile-publications">
+                            <input id="user-public-publications-police" type="checkbox" {{isCheckOwnPosts}}>
+                            <label for="user-public-publications-police">{ 'PROFILE_MAKE_MY_PUBLICATION_AVAILABLE_TO_ALL_USERS' }}</label>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="bz-separate"></div>
+                
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns"> 'PROFILE_USER_PHONE_NUMBER' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="user-settings bz-profile-phone-number disabled" autocomplete="off" type="text" value="{{getUser.phone.value}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">  'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns"> 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-phone-status">
+                      {{#if $eq getUser.phone.policy  "1" }}
+                        <option selected value="1"> 'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option value="0"> 'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{else}}
+                        <option value="1">  'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option selected value="0">  'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">  'PROFILE_USER_SKYPE_LOGIN' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="user-settings bz-profile-skype disabled" autocomplete="off" type="text" value="{{getUser.skype.value}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">  'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">  'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-skype-status">
+                      {{#if $eq getUser.skype.policy  "1" }}
+                        <option selected value="1">  'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option value="0"> 'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{else}}
+                        <option value="1"> 'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option selected value="0">  'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bz-separate"></div>
+
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">  'PROFILE_USER_VK' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="user-settings bz-profile-vk-url disabled" autocomplete="off" type="text" value="{{getUser.vk.value}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error"> 'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns"> 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-vk-status">
+                      {{#if $eq getUser.vk.policy  "1" }}
+                        <option selected value="1">  'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option value="0">  'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{else}}
+                        <option value="1">  'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option selected value="0">  'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">  'PROFILE_USER_FACEBOOK' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="user-settings bz-profile-facebook-url disabled" autocomplete="off" type="text" value="{{getUser.facebook.value}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">  'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">  'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-facebook-status">
+                      {{#if $eq getUser.facebook.policy  "1" }}
+                        <option selected value="1">  'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option value="0">  'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{else}}
+                        <option value="1">  'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option selected value="0">  'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">  'PROFILE_USER_TWITTER' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="user-settings bz-profile-twitter-url disabled" autocomplete="off" type="text" value="{{getUser.twitter.value}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">  'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns"> 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-twitter-status">
+                      {{#if $eq getUser.twitter.policy  "1" }}
+                        <option selected value="1"> 'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option value="0"> 'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{else}}
+                        <option value="1"> 'PROFILE_POLICY_PUBLIC' }}</option>
+                        <option selected value="0"> 'PROFILE_POLICY_HIDDEN' }}</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="bz-separate"></div>
+              <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns"> 'PROFILE_USER_LANGUAGE' }}</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                    <!--{{> bzChangeLanguage}}-->
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</template>

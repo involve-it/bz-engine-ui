@@ -1,0 +1,150 @@
+<template name="bzChatsMy">
+    {{#if getChats}}{{/if}}
+    
+    <!-- getData from template instance -->    
+    {{#if getData}}
+        {{> bzChatsToolbar}}
+        {{#each getData}}
+            {{> bzChatItem }}
+        {{/each}}
+    {{else}}
+        {{> noChats}}
+    {{/if}}
+</template>
+
+<template name="bzChatItem">
+
+  <div class="bz-chat-item">
+    <a href="/chat/{{ _id }}">
+      <div class="bz-meta">
+
+        {{#each getUsers }}
+
+          {{#if profile.image.data}}
+            <div class="bz-user-avatar">
+                <div class="bz-avatar" style="background-image: url({{ profile.image.data }})"></div>
+            </div>
+          {{else}}
+            <div class="bz-user-avatar">
+              <img src="/img/content/avatars/avatar-no.png" alt="null"/>
+            </div>
+          {{/if}}
+
+          <div class="bz-username">
+            {{ getUserName this }}
+          </div>
+
+        {{/each }}
+
+        <div class="bz-last-timestamp"> Последнее сообщение: {{ getFormattedTs lastMessageTs }} </div>
+
+      </div>
+    </a>
+  </div>
+
+</template>
+
+<template name="chatMessage">
+  <div class="bz-conversations-message-wrapper">
+    <div class="bz-message {{ getMessageClass}}">
+      <div class="bz-box-message">
+        <div class="bz-message-user-avatar">
+            <img src="{{getAvatarUrl}}" style="height:40px; width:40px;">
+        </div>
+        <div class="bz-message-body">
+            <div class="bz-message-text">{{ text }}</div>
+            <span class="timeStamp">{{timestampToTime timestamp}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="replyArea">
+  <div id="replyArea">
+    <div class="user-inputs-messages">
+
+      <div class="user-inputs">
+        <form>
+          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Написать сообщение &crarr;"
+                    data-autoresize rows="1"></textarea>
+          <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
+          <input id="send-btn" type="button" value="send" class="btn--send">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<template name="noChats">
+
+  <div class="bz-wrapper-no-message">
+    <div class="bz-flex-box">
+
+      <div class="bz-img-conversation">
+        <i class="fa fa-comments"></i>
+      </div>
+
+      <div class="title-message">Чатов нет</div>
+      <div class="subtitle-message">Начать </div>
+
+      <div class="bz-padding-top-x2 hide">
+        <button class="button button-outline btn-default goContacts">Перейти к контактам</button>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<template name="bzChatsToolbar">
+
+  <div class="bz-toolbar bz-chats-toolbar">
+    <div class="bz-search-header">
+      <label class="bz-item-input-wrapper">
+        <i class="fa fa-search placeholder-icon"></i>
+        <input type="search" placeholder="Поиск" class="bz-input-search">
+      </label>
+    </div>
+    <a class="button btn-default bz-small disabled hide"><span class="show-for-small-only"><i class="fa fa-plus"></i></span> <span class="show-for-medium-up">Новое сообщение</span></a>
+  </div>
+    
+    <div class="bz-summary-wrapper">
+        <div class="bz-summary">
+            Диалогов: <span>{{getSummaryUsers}}</span>
+        </div>
+    </div>
+
+</template>
+
+<template name="onePostRowItem">
+
+  <div class="item">
+    <a href="/post/{{_id}}">
+      <div class="photo">
+        <div class="photo-wrapper">
+          <img src="{{getPhotoUrl.data}}">
+        </div>
+      </div>
+
+      <div class="description">
+
+        <h3 class="title">{{details.title}}</h3> <!-- Define max characters-->
+
+        {{#if details.price}}
+          <div class="price"> {{details.price}} <span class="prefix">$</span></div>
+        {{/if}}
+        <div class="count-view">Просмотров 250 <span class="today">(15 сегодня)</span></div>
+        <div class="progress">Осталось 15 дней</div>
+        <div class="services" style="display: none">
+          <ul>
+            <li class="vip">VIP</li>
+            <li class="up">UP</li>
+            <li>...</li>
+          </ul>
+        </div>
+      </div>
+    </a>
+  </div>
+
+</template>

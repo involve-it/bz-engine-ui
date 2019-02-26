@@ -1,0 +1,12 @@
+<template name="categoryListButtons">
+    {{#if getCategoryItems}}
+        <ul class="control--category-list-buttons">
+            <li class="js-item-category {{isActivePath path='/home'}}" data-value="all"><a
+                    href="{{pathFor 'home'}}"><b>{{t9n 'ALL'}}</b></a></li>
+            {{#each getCategoryItems}}
+                <li class="js-item-category {{ isActive this}}" data-value="{{ intName }}"><a
+                        class="category-{{intName}}" href="{{intName}}">{{name}}</a></li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</template>

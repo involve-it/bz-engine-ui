@@ -1,0 +1,51 @@
+<template name="avatarThumbnail">
+  <div class="bz-avatar" style="background-image: url({{ getAvatarImage }})"></div>
+
+  {{#if canWrite }}
+    <div class="edit-image-holder">
+      <a class="js-edit-image-icon">
+        <i class="fa fa-pencil"></i>
+      </a>
+      <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+           role="dialog">
+        {{> uploadImageModal getImagesArrayReactive }}
+      </div>
+    </div>
+  {{/if}}
+</template>
+
+<template name="bzUserProfileBasic">
+    {{#if getUser}}
+        <div class="bz-user-badge">
+            <a href="/user/{{_id}}">
+                <div class="bz-avatar" style="background-image: url({{#if getUser.image.imageUrl}} {{getUser.image.imageUrl}} {{else}} '/img/content/avatars/avatar-no.png' {{/if}})"></div>
+                <!-- OLD CODE -->
+                <!--{{> avatarThumbnail image=profile.image }}-->
+            </a>
+            
+            {{> bzAvatarUserStatus getUser}}
+            
+        </div>
+        
+        <div class="bz-user-date">
+            <div class="bz-user-date-status">
+                <a href="/user/{{_id}}">
+                    <div class="bz-user-date-username">{{getUser.username}}</div>
+                </a>
+            
+                <!-- moved to details-controls.js -->
+                <!--{{#if belongsToCurrentUser }}
+                    <a class="bz-post-action-link" href="/posts/{{ getCurrentPostId }}/edit" title="Edit">
+                        <i class="fa fa-pencil-square"></i>
+                    </a>
+                {{/if}}-->
+                
+            </div>
+        </div>
+    
+        <div class="bz-send-message">
+            <button class="js-send-message-btn bz-small">'SEND_MESSAGE' }}</button>
+        </div>
+    {{/if}}
+</template>
+

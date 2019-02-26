@@ -1,0 +1,58 @@
+<template name="bzChatId">
+
+  <div class="main-content">
+    <div class="bz-page-chat">
+
+        {{> bzMessageToolbar }}
+        
+        <div class="bz-messages-container">
+            
+            {{#each this}}
+                {{> chatMessage }}
+            {{/each}}
+            
+            {{#with getSubscribeNewMessages}}
+                {{#each this}}
+                    {{> chatMessage }}
+                {{/each}}
+            {{/with}}
+            
+        </div>
+        
+        <div class="bz-user-inputs-messages">
+            <div class="bz-user-inputs-messages-wrapper">
+                <div class="bz-user-inputs">
+                    <div class="bz-user-inputs-message">
+                        <textarea class="btn--input-message" id="message-input" placeholder=" 'CHATS_TYPE_YOUR_MESSAGE' }}" name="textMessage" data-autoresize rows="1"></textarea>
+                    </div>
+                    <div class="bz-user-inputs-btn-send">
+                        <button id="send-btn" type="button" class="button bz-small btn-default btn--send" disabled={{buttonStateDisabled}}> 'SEND' }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+ 
+</template>
+
+<template name="bzMessageToolbar">
+    <div class="bz-toolbar bz-user-owner-toolbar">
+        <div class="bz-user-owner-toolbar-wrapper">
+            <div class="bz-user-wrap-inner">
+                <div class="bz-user-avatar">
+                    <a href="/user/{{getFriendUserName._id}}">
+                        <img src="{{#if getFriendUserName.image.thumbnail}}{{getFriendUserName.image.thumbnail}}{{else}}{{getFriendUserName.image.imageUrl}}{{/if}}" style="height:50px; width:50px;">
+                    </a>
+                </div>
+                <div class="bz-user-info">
+                    <div class="bz-username">
+                        <a href="/user/{{getFriendUserName._id}}">{{getFriendUserName.username}}</a>
+                    </div>
+                    <!-- <div class="bz-user-status"><span>online or offline</span></div> -->
+                </div>
+            </div>
+            <!-- <div class="bz-user-service-menu">Will be service menu</div> -->
+        </div>
+    </div>
+</template>

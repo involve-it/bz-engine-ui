@@ -1,0 +1,126 @@
+<template name="uploadImageModal">
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    <div class="bz-modal-dialog-wrapper">
+        <div class="bz-modal-dialog-header">
+            <h2 id="modalTitle" class="title">t9n 'IMAGE_SELECT_CHOOSE_IMAGE'}}</h2>
+
+            <div class="bz-toolbar bz-upload-image-toolbar">
+                <div class="bz-upload-image-toolbar-wrapper">
+                    <ul class="tabs bz-nav sub-sections bz-horizontal" data-tab>
+                        <li class="tab-title js-tab-title active"><a href="#panel11"><i
+                                class="fa fa-folder-open fa-2x"></i><br/><span
+                                class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_UPLOAD_PHOTO'}}</span></a></li>
+                        <!--<li class="tab-title js-tab-title"><a href="#panel21"><i class="fa fa-camera fa-2x"></i><br/><span class="hide-for-small-only">Take Photo</span></a></li>-->
+                        <li class="tab-title js-tab-title"><a href="#panel31"><i class="fa fa-cloud-download fa-2x"></i><br/><span
+                                class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_IMAGE_FROM_URL'}}</span></a></li>
+                        <li class="tab-title js-tab-title"><a href="#panel41" class="js-random-image-tab-btn"><i
+                                class="fa fa-random fa-2x"></i><br/><span class="hide-for-small-only">{{ t9n
+                                'IMAGE_SELECT_RANDOM_IMAGE'}}</span></a></li>
+                        <!--<li class="tab-title js-tab-title"><a href="#panel51" class="js-my-images-tab-btn"><i
+                  class="fa fa-recycle fa-2x"></i><br/><span class="hide-for-small-only">{{ t9n
+                                'IMAGE_SELECT_MY_IMAGES'}}</span></a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bz-modal-dialog-content">
+            <div class="bz-choose-image-user-images-list">
+                <div class="bz-preview-wrapper js-preview-wrapper">
+                    <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
+                </div>
+
+                <div class="tabs-content">
+                    <div class="content active" id="panel11">
+                        {{#if countFile}}
+                            <p>
+                                <input type="file" accept="image/*" class="js-file-upload">
+                                <!--<button class="button js-photo-library">Choose file</button>-->
+                            </p>
+                        {{else}}
+                            {{> noUploadImagePhoto}}
+                        {{/if}}
+                    </div>
+                    <div class="content" id="panel21">
+                        <div class="bz-upload-photo-wrapper">
+                            <div class="bz-upload-photo-wrapper-image"><i class="fa fa-camera"></i></div>
+                            <div class="bz-button-box">
+                                <button class="button btn-default btn-gray js-take-photo">{{ t9n
+                                        'IMAGE_SELECT_TAKE_PHOTO'}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content" id="panel31">
+                        <div class="bz-upload-photo-wrapper">
+                            <div class="bz-upload-photo-wrapper-check">
+                                <div class="bz-input-flex"><input type="text"
+                                                                  placeholder="{{ t9n 'IMAGE_SELECT_IMAGE_URL'}}"
+                                                                  class="js-image-url"></div>
+                                <div class="margin-left">
+                                    <button class="button btn-default bz-small js-use-image-url">{{ t9n
+                                            'IMAGE_SELECT_CHECK_IMAGE'}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            {{ t9n 'OR'}}<br/>
+                            <div class="bz-input-flex"><input type="text"
+                                                              placeholder="{{ t9n 'IMAGE_SELECT_PASTE_FROM_CLIPBOARD'}}"
+                                                              class="js-image-from-clipboard"></div>
+                        </div>
+                    </div>
+                    <div class="content" id="panel41">
+                        <div class="bz-upload-photo-wrapper">
+                            <div class="bz-button-box">
+                                <button
+                                        class="button bz-small btn-default btn-gray js-use-random-image-url">{{ t9n
+                                        'COMMON_IMAGE_GET_RANDOM'}} </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content" id="panel51">
+                        <ul>
+                            {{#each getUserImages }}
+                                {{> bzImagesPreviewList }}
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div data-alert class="alert-box alert hidden js-library-not-available-alert">
+                {{ t9n 'IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE'}}
+                <a href="#" class="close">&times;</a>
+            </div>
+        </div>
+
+        <div class="bz-modal-dialog-footer">
+            <button class="js-ok-btn btn-default bz-small bz-button-done">{{ t9n 'IMAGE_SELECT_DONE'}}</button>
+            <button class="js-cancel-btn secondary btn-default bz-small bz-button-done">{{ t9n 'CANCEL'}}</button>
+        </div>
+    </div>
+</template>
+
+<template name="bzImagesPreviewList">
+    <li>
+        <a href="#" class="js-images-preview-list-image"><img height="50" style="height:50px; max-height: 50px;"
+                                                              src="{{ data }}"/>{{ fileName }}, _id: {{ _id }}</a>
+    </li>
+</template>
+<template name="filePickerUpload">
+    <button id="upload">{{ t9n 'IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE'}}</button>
+</template>
+
+<template name="noUploadImagePhoto">
+    <div class="no-upload-image">
+        <!--{{#if getPreviewImgSrc }}
+        {{ else }}
+        <div class="no-upload-image-wrapper">
+          <div class="no-img"><i class="fa fa-picture-o"></i></div>
+        </div>
+      {{/if }}-->
+        <div class="bz-files-button">
+            <input type="file" accept="image/*" class="bz-custom-file-input js-file-upload">
+        </div>
+    </div>
+</template>

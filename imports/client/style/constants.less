@@ -1,0 +1,247 @@
+@disabled:      #A0A0A0;
+@disabled-bg:   rgba(223,223,223, 1);
+@disabled-text: rgba(159,159,159, 1);
+
+
+@h-title-color:       rgba(89,99,107,.95);
+@sub-title-color:     rgba(153,153,153,.95);
+@text-link-green:     rgba(32, 171, 173, 0.95);
+@roboto-font-family:  "Roboto", sans-serif;
+
+@text-color:             rgb(63, 68, 82);
+@text-color-label:       rgba(89,99,107, .95);
+@text-color-label-span:  #88858c;
+
+@border-color-sep:       rgba(222,222,222,1);
+
+@max-width-side-b: 280px;
+@white-color-text: rgba(255,255,255, 1);
+@off-canvas-link-color-i: rgba(255,255,255, .85);
+@background-bar-fantasia:   #1EBCD2; //buzzar color, old color #8097ff
+
+
+@bg-header-color-2: #87D0BF;
+@bg-header-color-1: #51B9C8;
+
+@bz-background-tabs-2: #87D0BF;
+@bz-background-tabs-1: #51B9C8;
+
+@bg-color-fff: rgba(255,255,255, 1);
+@bg-color-eee: rgba(238,238,238, 1);
+
+@bg-menu-color-1: rgb(63, 68, 82);
+
+
+@bg-input-search-field: rgba(54,60,78, 1);
+@color-text-input-search-field: rgba(255,255,255, .85);
+@bg-header-color-2: #4285F4;
+//$bg-header-color-2: #87D0BF;
+@bg-header-color-2: #4695e6;
+@bg-header-color-1: #51B9C8; //'google' color
+
+@btn-search: rgba(30,188,210, 1);
+@color-white-text: rgba(255,255,255, 1);
+@color-text-placeholder: rgba(255,255,255, .65);
+@content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
+@font-family: "Roboto", sans-serif;
+
+
+p {
+  font-size: 15px;
+}
+
+/* MIXIN */
+
+.centerer() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+
+/*links mixin*/
+.links(@link, @visited, @hover, @active) {
+  & {
+    color: @link;
+    &:visited {
+      color: @visited;
+    }
+    &:hover {
+      color: @hover;
+    }
+    &:active, &:focus {
+      color: @active;
+    }
+  }
+}
+
+.text-transition() {
+   transition:         opacity .25s ease-in-out;
+   -moz-transition:    opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius:    @radius;
+  border-radius:         @radius;
+}
+
+.display-flex-box() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-flow(@param1, @param2) {
+  -webkit-flex-direction: @param1;
+  flex-direction:         @param1;
+  -webkit-flex-wrap:      @param2;
+  flex-wrap:              @param2;
+}
+
+.justify-content(@param) {
+  -webkit-justify-content: @param;
+  justify-content:         @param;
+}
+
+.flex(@flex-grow, @flex-shrink) {
+  -webkit-flex:   @flex-grow @flex-shrink;
+  flex:           @flex-grow @flex-shrink ;
+}
+
+.align-items(@param) {
+  -webkit-align-items: @param;
+  align-items:         @param;
+}
+
+.align-self(@param) {
+  -webkit-align-self: @param;
+  align-self: @param;
+}
+
+.bz-btn-category() {
+  height: 26px;
+  .border-radius(2px);
+  font-size: 12px;
+  padding: 6px 5px;
+  margin: 5px 0;
+  
+  &.bz-type-inner {
+    cursor: default;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 8px;
+    margin: 0 9px 0 0;
+  }
+}
+
+.bz-background-tabs() {
+  background-image: -webkit-linear-gradient(-35deg, @bz-background-tabs-1, @bz-background-tabs-2);
+  background-image: linear-gradient(135deg, @bz-background-tabs-1, @bz-background-tabs-2);
+  background-color: @bz-background-tabs-1;
+}
+
+.type-category() {
+  /*Category type*/
+  &.type-category-jobs      {background-color: rgba(114,201,234, 1);}
+  &.type-category-trainings {background-color: rgba(209,138,189, 1);}
+  &.type-category-connect   {background-color: rgba(253,94,81, 1);}
+  &.type-category-trade     {background-color: rgba(155,156,156, 1);}
+  &.type-category-housing   {background-color: rgba(189,208,39, 1);}
+  &.type-category-events    {background-color: rgba(237,116,40, 1);}
+  &.type-category-services  {background-color: rgba(166,210,173, 1);}
+  &.type-category-help      {background-color: rgba(90,163,147, 1);}
+  &.type-category-          {display: none; }
+}
+
+.type-category-color() {
+  /*Category type*/
+  &.type-category-jobs      {color: rgba(114,201,234, 1);}
+  &.type-category-trainings {color: rgba(209,138,189, 1);}
+  &.type-category-connect   {color: rgba(253,94,81, 1);}
+  &.type-category-trade     {color: rgba(155,156,156, 1);}
+  &.type-category-housing   {color: rgba(189,208,39, 1);}
+  &.type-category-events    {color: rgba(237,116,40, 1);}
+  &.type-category-services  {color: rgba(166,210,173, 1);}
+  &.type-category-help      {color: rgba(90,163,147, 1);}
+}
+
+/* END MIXIN */
+
+input:not([type]).input-clear,
+input[type="text"].input-clear {
+  padding: 0;
+  margin: 0;
+}
+
+
+ul.none-list {
+
+  li {
+    list-style: none;
+  }
+}
+
+/* FONT FACE */
+/* BZ ICONS */
+
+@font-face {
+  font-family: "bz-font-face";
+  src:url("fonts/bz-font-face/bz-font-face.eot");
+  src:url("fonts/bz-font-face/bz-font-face.eot?#iefix") format("embedded-opentype"),
+  url("fonts/bz-font-face/bz-font-face.woff") format("woff"),
+  url("fonts/bz-font-face/bz-font-face.ttf") format("truetype"),
+  url("fonts/bz-font-face/bz-font-face.svg#bz-font-face") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "bz-font-face" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="bz-icon-"]:before,
+[class*=" bz-icon-"]:before {
+  font-family: "bz-font-face" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bz-icon {
+  display: inline-block;
+  font-size: inherit;
+  text-rendering: auto;
+  
+  &.bz-icon-dinamic:before {
+    content: "\61";
+  }
+  &.bz-icon-flag:before {
+    content: "\62";
+  }
+}
+
+
+

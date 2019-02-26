@@ -1,0 +1,272 @@
+@off-canvas-link-color-i: rgba(255, 255, 255, .85);
+/* SIZE, Extensions menuShadow*/
+
+html {
+  &.mm-opening {
+    .mm-slideout {
+      -webkit-transform: translate3d(80%, 0, 0);
+      transform: translate3d(80%, 0, 0);
+    }
+  }
+}
+
+/*END SIZE*/
+
+#bz-menu:not( .mm-menu ) {
+  display: none;
+}
+
+.mm-menu {
+  min-width: 140px;
+  max-width: 340px;
+
+  background-color: #545461;
+
+  .bz-menu-wrapper {
+    position: relative;
+    padding-bottom: 40px;
+
+    li {
+
+      a {
+        border-bottom: none;
+        text-shadow: 0 1px rgba(0, 0, 0, .3);
+        padding: 8px 8px 8px 22px;
+
+        i {
+          color: @off-canvas-link-color-i;
+          font-size: 20px;
+        }
+
+        span {
+          padding-left: 10px;
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, .15);
+          color: rgba(255, 255, 255, 1);
+
+          i {
+            color: #51B9C8;
+          }
+        }
+      }
+
+      label {
+        background-color: rgba(0, 0, 0, .1);
+        border-top: none;
+      }
+
+      &.active {
+        a {
+          background-color: rgba(0, 0, 0, .2);
+          color: rgba(255, 255, 255, 1);
+
+          i {
+            color: #51B9C8;
+          }
+        }
+      }
+    }
+
+    .log-out {
+      border-top: 1px solid rgba(0, 0, 0, .1);
+
+      a {
+        padding: 0.66667rem;
+      }
+    }
+
+    /*choose language left menu*/
+    .bz-menu-select-language {
+      position: relative;
+      margin-top: 10px;
+      padding: 0 16px;
+
+      /*ul*/
+      .bz-menu-switcher-language-list {
+        overflow: hidden;
+        margin: 0;
+
+        li {
+          list-style: none;
+          float: left;
+          text-align: center;
+          width: 40px;
+
+          > a {
+            cursor: pointer;
+            display: block;
+            padding: 4px 6px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, .75);
+
+            &:hover {
+              background-color: transparent;
+              color: rgba(255, 255, 255, 1);
+            }
+
+            .bz-lang-bottom-line {
+              background-color: rgba(255, 255, 255, .75);
+            }
+          }
+
+          .bz-lang-bottom-line {
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            width: 40px;
+          }
+
+          &.bz-active {
+
+            a {
+              background-color: transparent;
+              color: rgba(255, 255, 255, 0.45);
+            }
+
+            .bz-lang-bottom-line {
+              background-color: rgba(0, 0, 0, .45);
+              z-index: 3;
+            }
+          }
+        }
+      }
+
+      .bz-menu-switcher-language-bar {
+        position: relative;
+        z-index: 2;
+        clear: both;
+        margin: 0 auto;
+        height: 2px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, .9);
+      }
+    }
+  }
+
+  /*shadow*/
+  &.mm-menuShadow {
+    &:after {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 120%;
+      position: absolute;
+      left: 100%;
+      top: -10%;
+      z-index: 99;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    }
+  }
+
+  &.mm-menuShadow.mm-right {
+    &:after {
+      left: auto;
+      right: 100%;
+    }
+  }
+
+  &.mm-menuShadow.mm-front:after,
+  .mm-menu.mm-menuShadow.mm-next:after {
+    content: none;
+    display: none;
+  }
+}
+
+/*//*/
+#bz-open-toggle-menu {
+  box-sizing: border-box;
+  display: block;
+  width: 70px;
+  height: 45px;
+  //position: fixed;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+html:not(.mm-opening):not(.mm-opened) #hamburger {
+  transition: top 0.3s ease;
+}
+
+#bz-open-toggle-menu:before,
+#bz-open-toggle-menu:after,
+#bz-open-toggle-menu span {
+  background: #fff;
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  position: absolute;
+  left: 20px;
+}
+
+#bz-open-toggle-menu:before {
+  top: 12px;
+}
+
+#bz-open-toggle-menu span {
+  top: 22px;
+}
+
+#bz-open-toggle-menu:after {
+  top: 32px;
+}
+
+/* Hamburger animation */
+#bz-open-toggle-menu:before,
+#bz-open-toggle-menu:after,
+#bz-open-toggle-menu span {
+  -webkit-transition: none 0.5s ease 0.5s;
+  transition: none 0.5s ease 0.5s;
+
+  -webkit-transition-property: transform, top, bottom, left, opacity;
+  transition-property: transform, top, bottom, left, opacity;
+}
+
+html.mm-opening #bz-open-toggle-menu:before,
+html.mm-opening #bz-open-toggle-menu:after {
+  top: 20px;
+}
+
+html.mm-opening #bz-open-toggle-menu span {
+  left: -15px;
+  opacity: 0;
+}
+
+html.mm-opening #bz-open-toggle-menu:before {
+  transform: rotate(45deg);
+}
+
+html.mm-opening #bz-open-toggle-menu:after {
+  transform: rotate(-45deg);
+}
+
+/*//*/
+
+/*@media (max-width: 600px) {
+  #bz-menu {
+    display: none !important;
+  }
+}
+@media (min-width: 601px) {
+  #mm-bz-menu{
+    display: none !important;
+  }
+}*/
+
+@media all and (max-width: 175px) {
+  html.mm-opening .mm-slideout {
+    -webkit-transform: translate3d(140px, 0, 0);
+    transform: translate3d(140px, 0, 0)
+  }
+}
+
+@media all and (min-width: 550px) {
+  html.mm-opening .mm-slideout {
+    -webkit-transform: translate3d(340px, 0, 0);
+    transform: translate3d(340px, 0, 0)
+  }
+}
